@@ -1,5 +1,5 @@
 <template>
-  <div class="header">
+  <div class="m-header">
     <el-row>
       <top-bar />
     </el-row>
@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import topBar from './topBar'
-import searchBar from './searchBar'
+import topBar from './TopBar'
+import searchBar from './SearchBar'
 export default {
   name: 'index',
   components: {
@@ -21,6 +21,6 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style lang="scss">
+ @import "src/assets/css/public/header/index.scss";
 </style>

@@ -1,15 +1,26 @@
 <template>
-  <div class="top">
-    top
-  </div>
+  <el-row class="m-header-topbar m-header">
+    <el-col :span="10">
+      <geo />
+    </el-col>
+    <el-col :span="14">
+      <my-nav />
+    </el-col>
+  </el-row>
 </template>
 
 <script>
+import Geo from './Geo'
+import MyNav from './Nav'
 export default {
-  name: 'topBar'
+  name: 'topBar',
+  components: {
+    Geo,
+    MyNav
+  }
 }
 </script>
 
-<style scoped>
-
+<style lang="scss">
+  @import "src/assets/css/public/header/topbar.scss";
 </style>

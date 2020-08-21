@@ -8,6 +8,12 @@
       z-index: 9;
     }
   }
+  .link-city{
+    color: #999;
+    &:hover{
+      color: #FE8C00;
+    }
+  }
   .m-geo {
     color: #666;
     font-size: 12px;
@@ -23,7 +29,7 @@
       margin: 0 4px;
       padding: 0 2px;
       &:hover {
-        color: #31BBAC;
+        color: #FE8C00;
       }
     }
     .username {
@@ -37,11 +43,11 @@
       color: #999;
       margin: 0 5px;
       &.login {
-        color: #31BBAC;
+        color: #FE8C00;
         margin: 0 5px 0 20px;
       }
       &:hover {
-        color: #31BBAC;
+        color: #FE8C00;
       }
     }
   }
@@ -66,7 +72,7 @@
           color: #999;
 
           &:hover {
-            color: #31BBAC;
+            color: #FE8C00;
           }
         }
 
@@ -133,9 +139,10 @@
 
         .subContainer {
           box-sizing: border-box;
+          //display: block;
           background: #fff;
           padding: 30px 36px 36px 47px;
-          width: 1250px;
+          width: 1252px;
           position: relative;
           left: -1175px;
           z-index: 999;
@@ -164,7 +171,7 @@
             dt {
               margin-bottom: 26px;
               font-size: 14px;
-              color: #31BBAC;
+              color: #000;
               text-align: center;
             }
 
