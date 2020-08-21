@@ -18,7 +18,7 @@
         width: auto;
         .wrapper {
           margin-top: 16px;
-          border: 1px solid #13D1BE;
+          border: 1px solid #E5E5E5;
           border-radius: 4px;
           width: 552px;
           box-sizing: border-box;
@@ -33,9 +33,11 @@
             border-bottom-right-radius: 0;
           }
           .el-button {
-            width: 88px;
+            height: 43px  ;
+            top: -1px;
+            width: 89px;
             border: none;
-            background: #13D1BE;
+            background: #FFC300;
             font-size: 16px;
             border-top-left-radius: 0;
             border-bottom-left-radius: 0;
@@ -47,12 +49,12 @@
           .hotPlace,
           .searchList {
             position: absolute;
-            top: 41px;
+            top: 44px;
             left: 0;
             background: #fff;
             padding: 10px;
             font-size: 12px;
-            width: 462px;
+            width: 466px;
             box-sizing: border-box;
             border: 1px solid #E5E5E5;
             border-top: none;
@@ -76,7 +78,7 @@
 
               &:hover {
                 background: #F8F8F8;
-                color: #31BBAC;
+                color: #FFC300;
               }
             }
 
@@ -109,7 +111,7 @@
             font-size: 12px;
 
             &:hover {
-              color: #31BBAC;
+              color: #FFC300;
             }
           }
         }
