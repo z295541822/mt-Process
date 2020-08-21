@@ -5,15 +5,23 @@ import blankPage from '../layout/blank'
 import ChangeCity from '../components/ChangeCity'
 import Login from '../components/Login'
 import Register from '../components/Register'
+import Index from '../page/index'
 
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
       name: 'defaultPage',
-      component: defaultPage
+      component: defaultPage,
+      redirect: '/index',
+      children: [{
+        path: '/index',
+        name: 'index',
+        component: Index
+      }]
     },
     {
       path: '/blank',
