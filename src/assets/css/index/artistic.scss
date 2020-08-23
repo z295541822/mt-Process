@@ -19,8 +19,11 @@
       background-color: rgb(190, 164, 116);
       background-image: linear-gradient(to right, rgb(194, 176, 142) 3%, rgb(190, 164, 116) 100%);
     }
-    &.youhui {
+    &.movie {
       background: linear-gradient(to right, rgb(250, 60, 104) 2%, rgb(254, 70, 77) 97%) rgb(250, 60, 104);
+    }
+    &.mingsu {
+      background: linear-gradient(to right, rgb(243, 182, 74) 2%, rgb(242, 197, 69) 97%) rgb(243, 182, 74)
     }
     dt {
       font-size: 18px;
