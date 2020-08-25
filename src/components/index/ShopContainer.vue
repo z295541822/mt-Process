@@ -20,7 +20,8 @@
           <img :src="item.image"
                class="product-img">
           <div class="cbody">
-            <div class="product-info"><p class="product-title">{{ item.title }}</p>
+            <div class="product-info">
+              <p class="product-title">{{ item.title }}</p>
               <p class="sub-title">{{ item.subtitle }}</p>
 
               <div

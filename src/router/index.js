@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import defaultPage from '../layout/default.vue'
 import blankPage from '../layout/blank'
-import ChangeCity from '../components/ChangeCity'
+import ChangeCity from '../page/ChangeCity'
 import Login from '../components/Login'
 import Register from '../components/Register'
 import Index from '../page/index'
@@ -21,17 +21,16 @@ export default new Router({
         path: '/index',
         name: 'index',
         component: Index
+      }, {
+        path: '/changeCity',
+        name: 'changeCity',
+        component: ChangeCity
       }]
     },
     {
       path: '/blank',
       name: 'blankPage',
       component: blankPage
-    },
-    {
-      path: '/changeCity',
-      name: 'changeCity',
-      component: ChangeCity
     },
     {
       path: '/login',
