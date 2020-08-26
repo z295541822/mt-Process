@@ -6,37 +6,31 @@
       </el-col>
       <el-col :span="15" class="center">
         <div class="wrapper">
-          <el-input v-model="searchWord" placeholder="搜索商家或地点"  @focus="focus" @blur="blur"></el-input>
+          <el-input
+            v-model="searchWord"
+            placeholder="搜索商家或地点"
+            @focus="focus"
+            @blur="blur"
+            @input="input"
+          ></el-input>
           <el-button type="primary" icon="el-icon-search"></el-button>
           <dl class="hotPlace" v-if="isHotPlace">
             <dt>热门搜索</dt>
-            <dd>
-              <router-link to="/s">京东第一温泉度假村</router-link>
-            </dd>
-            <dd>
-              <router-link to="/s">99旅馆连锁</router-link>
-            </dd>
-            <dd>
-              <router-link to="/s">尚客优快捷酒店</router-link>
+            <dd
+              v-for="(item,index) in hotPlaceList"
+              :key="item + '_'+ index"
+            >
+              <router-link  :to="{name: 'goodsList', params: {name: item}}">{{item}}</router-link>
             </dd>
           </dl>
           <dl class="searchList" v-if="isSearchList">
-            <dd>
-              <router-link to="/s">火锅</router-link>
-            </dd>
-            <dd>
-              <router-link to="/s">火锅自助</router-link>
-            </dd>
-            <dd>
-              <router-link to="/s">火锅 重庆</router-link>
+            <dd v-for="(item,index) in searchList" :key="index">
+              <router-link :to="{name:'goodsList',params:{name:item}}">{{ item }}</router-link>
             </dd>
           </dl>
         </div>
         <p class="suggest">
-          <a href="#">京东第一温泉度假村</a>
-          <a href="#">99旅馆连锁</a>
-          <a href="#">尚客优快捷酒店</a>
-          <a href="#">7天连锁酒店</a>
+          <router-link v-for="(item, index) in suggestList" :key="item + '~' + index" :to="{name: 'goodsList', params: {name: item}}">{{item}}</router-link>
         </p>
       </el-col>
     </el-row>
@@ -44,7 +38,8 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from '../api/index.js'
+import api from '../api/index.js'
 export default {
   name: 'searchBar',
   data () {
@@ -57,13 +52,9 @@ export default {
     }
   },
   created () {
-    axios.get('https://api.duyiedu.com/api/meituan/header/searchHotWords.json',{
-      params: {
-        appkey: 'z295541822_1585742494914',
-      }
-    }).then(res =>{
-      console.log(res)
-      this.isHotPlace()
+    api.searchHotWords().then(res =>{
+      this.hotPlaceList = res
+      this.suggestList = res
     })
   },
   computed: {
@@ -83,6 +74,14 @@ export default {
       setTimeout(function () {
         self.isFocus = false
       }, 200)
+    },
+    input() {
+      let val = this.searchWord
+      api.searchList().then(res =>{
+        this.searchList = res.list.filter((item,index) => {
+          return item.indexOf(val) > -1;
+        })
+      })
     }
   },
 }

@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import api from '../components/api'
 import Province from '../components/chanageCity/Province'
 import HotCity from '../components/chanageCity/HotCity'
 import CityList from '../components/chanageCity/CityList'
@@ -28,9 +29,17 @@ export default {
   },
   data() {
     return {
-      hotList: ['青岛', '淄博', '济南', '烟台', '枣庄', '东营'],
-      recentList: ['青岛', '淄博', '济南', '烟台', '枣庄', '东营']
+      hotList: [],
+      recentList: []
     }
+  },
+  created () {
+    api.getHotCity().then(res => {
+      this.hotList = res
+    })
+    api.getRecentCity().then(res => {
+      this.recentList = res
+    })
   }
 }
 </script>

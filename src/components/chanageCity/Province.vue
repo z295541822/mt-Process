@@ -7,6 +7,7 @@
       :showWrapperActive="provinceActive"
       @change_active="changeProvinceActive"
       @change="changeProvince"
+      className="province"
     />
     <my-select
       :list="cityList" title="城市"
@@ -14,6 +15,8 @@
       :showWrapperActive="cityActive"
       @change_active="changeCityActive"
       @change="changeCity"
+      :disabled="cityDisabled"
+      className="city"
     />
 
     <span>直接搜索：</span>
@@ -37,20 +40,30 @@
 
 <script>
 import MySelect from './Select'
+import api from '../api'
 export default {
   name: 'Province',
   data() {
     return {
-      provinceList: ['山东', '甘肃', '江苏', '北京', '云南', '海南', '浙江', '上海', '天津', '陕西', '新疆',],
+      provinceList: [],
       province: '省份',
-      cityList: ['青岛', '淄博', '济南', '烟台', '枣庄', '东营', '潍坊', '济宁'],
+      cityList: [],
       city: '城市',
       provinceActive: false,
       cityActive: false,
       searchList: ['青岛', '淄博', '济南', '烟台', '枣庄', '东营', '潍坊', '济宁'],
       searchWord: '',
       loading: false,
+      cityDisabled: true,
     }
+  },
+  created () {
+    api.getProvinceList().then(res =>{
+      this.provinceList = res.map((item) => {
+        item.name = item.provinceName
+        return item
+      })
+    })
   },
   components: {
     MySelect
@@ -72,10 +85,14 @@ export default {
       // 请求后端接口
     },
     changeProvince(value) {
-      this.province = value
+      this.province = value.name
+      this.cityDisabled = false
+      this.cityList = value.cityInfoList
     },
     changeCity(value) {
-      this.city = value
+      this.city = value.name
+      this.$store.dispatch('setPosition',value)
+      this.$router.push({name: 'index'})
     }
   }
 }

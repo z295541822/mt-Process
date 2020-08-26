@@ -10,8 +10,8 @@
         :key="index"
         @mouseenter="menuEnter(item)"
       >
-        <i :class="item.icon"></i>
-        {{ item.title }}
+        <i :class="item.type"></i>
+        {{ item.name }}
         <span class="arrow"></span>
       </dd>
     </dl>
@@ -21,55 +21,34 @@
       @mouseleave="dataLeave"
     >
       <template
-        v-for="(item,index) in curDetail.children"
+        v-for="(item,index) in curDetail.items"
       >
         <h4 :key="index">{{ item.title }}</h4>
         <span
-          v-for="(v,i) in item.children"
+          v-for="(v,i) in item.items"
           :key="v + '_' + i"
         >
           {{ v }}
         </span>
-<!--        <span>代金券</span>-->
-<!--        <span>代金券</span>-->
-<!--        <span>代金券</span>-->
-<!--        <span>代金券</span>-->
       </template>
     </div>
   </div>
 </template>
 
 <script>
+import api from '../api'
 export default {
   name: 'MenuList',
   data() {
     return {
       curDetail: null,
-      menuNav: [{
-        title:'美食',
-        icon: 'food',
-        children: [{
-          title: '美食',    // 放h4标签里的
-          children: ['代金券', '代金券', '代金券', '代金券', '代金券', '代金券', '代金券', '代金券', '代金券', ]
-        }]
-      },
-        {
-          title:'外卖',
-          icon: 'takeout',
-          children: [{
-            title: '外卖',    // 放h4标签里的
-            children: ['美团外卖']
-          }]
-        },
-        {
-          title:'酒店',
-          icon: 'hotel',
-          children: [{
-            title: '酒店星级',    // 放h4标签里的
-            children: ['经济型', '舒适三星', '经典性', '高档次型', '豪华五星']
-          }]
-        }]
+      menuNav: []
     }
+  },
+  created () {
+    api.getMenuNav().then(res => {
+      this.menuNav = res
+    })
   },
   methods: {
     menuEnter(item){

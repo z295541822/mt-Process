@@ -19,6 +19,7 @@
 </template>
 
 <script>
+import api from '../api'
 import Item from './Item'
 export default {
   name: 'List',
@@ -44,28 +45,13 @@ export default {
         name: '评价最高',
         active: false
       }],
-      productList: [{
-        'image': 'http://p0.meituan.net/xxxxc',
-        'title': '火鸡老店',
-        'type': 'food',
-        'score': '4.1',
-        'commentNum': 0,
-        'comment': [{
-          'username': 'xxxx',
-          'evalaute': '好吃'
-        }],
-        'tab': ['火锅', '沙河'],
-        'address': '昌平区小汤山尚信村沿温榆河畔北岸向西3．5公里',
-        'avg_price': 64,
-        'deal_items': [{
-          'title': '火鸡宴，建议10-14人使用',
-          'price': 909,
-          'counter_price': 1150,
-          'saleNum': 0,
-          'priceType': '元'
-        }]
-      }]
+      productList: []
     }
+  },
+  created () {
+    api.getProductsList().then(res => {
+      this.productList = res
+    })
   }
 }
 </script>

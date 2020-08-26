@@ -21,6 +21,7 @@
        <span
          v-for="city in item"
          :key="city.id"
+         @click="changeCity(city)"
        >{{ city.name }}</span>
       </dd>
     </dl>
@@ -28,6 +29,7 @@
 </template>
 
 <script>
+import api from '../api'
 export default {
   name: 'CityList',
   data() {
@@ -38,78 +40,23 @@ export default {
     }
   },
   created () {
-    let data = [{
-      'id': 1,
-      'name': '北京',
-      'pinyin': 'beijing',
-      'acronym': 'bj',
-      'rank': 'B',
-      'firstChar': 'b'
-    },{
-      'id': 10,
-      'name': '上海',
-      'pinyin': 'shanghai',
-      'acronym': 'sh',
-      'rank': 'S',
-      'firstChar': 's'
-    },{
-      'id': 11,
-      'name': '上海',
-      'pinyin': 'shanghai',
-      'acronym': 'sh',
-      'rank': 'C',
-      'firstChar': 'c'
-    },{
-      'id': 12,
-      'name': '上海',
-      'pinyin': 'shanghai',
-      'acronym': 'sh',
-      'rank': 'A',
-      'firstChar': 'a'
-    },{
-      'id': 13,
-      'name': '上海',
-      'pinyin': 'shanghai',
-      'acronym': 'sh',
-      'rank': 'R',
-      'firstChar': 'r'
-    },{
-      'id': 14,
-      'name': '上海',
-      'pinyin': 'shanghai',
-      'acronym': 'sh',
-      'rank': 'W',
-      'firstChar': 'w'
-    },{
-      'id': 15,
-      'name': '上海',
-      'pinyin': 'shanghai',
-      'acronym': 'sh',
-      'rank': 'I',
-      'firstChar': 'i'
-    },{
-      'id': 16,
-      'name': '上海',
-      'pinyin': 'shanghai',
-      'acronym': 'sh',
-      'rank': 'K',
-      'firstChar': 'k'
-    },{
-      'id': 17,
-      'name': '上海',
-      'pinyin': 'shanghai',
-      'acronym': 'sh',
-      'rank': 'M',
-      'firstChar': 'm'
-    },]
-    let obj = {}
-    data.forEach((item,index) =>{
-      if (!obj[item.firstChar.toUpperCase()]){
-        obj[item.firstChar.toUpperCase()] = []
-      }
-      obj[item.firstChar.toUpperCase()].push(item)
+    api.getCityList().then(res => {
+      var obj = {}
+      res.forEach((item, index) => {
+        if (!obj[item.firstChar.toUpperCase()]) {
+          obj[item.firstChar.toUpperCase()] = []
+        }
+        obj[item.firstChar.toUpperCase()].push(item)
+      })
+      this.cityGroup = obj
     })
-    this.cityGroup = obj
+  },
+
+  methods: {
+    changeCity(item) {
+      this.$store.dispatch('setPosition',item)
+      this.$router.push({name: 'index'})
+    }
   }
 }
 </script>

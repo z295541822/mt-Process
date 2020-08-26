@@ -27,7 +27,7 @@ export default new Router({
         name: 'changeCity',
         component: ChangeCity
       }, {
-        path: '/goodsList',
+        path: 's/:name',
         name: 'goodsList',
         component: GoodsList
       }]
