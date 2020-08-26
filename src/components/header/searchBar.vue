@@ -44,13 +44,27 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: 'searchBar',
   data () {
     return {
       searchWord: '',
-      isFocus: false
+      isFocus: false,
+      hotPlaceList: [],
+      searchList: [],
+      suggestList: []
     }
+  },
+  created () {
+    axios.get('https://api.duyiedu.com/api/meituan/header/searchHotWords.json',{
+      params: {
+        appkey: 'z295541822_1585742494914',
+      }
+    }).then(res =>{
+      console.log(res)
+      this.isHotPlace()
+    })
   },
   computed: {
     isHotPlace: function () {
@@ -70,7 +84,7 @@ export default {
         self.isFocus = false
       }, 200)
     }
-  }
+  },
 }
 </script>
 

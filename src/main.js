@@ -6,6 +6,7 @@ import router from './router'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import './assets/css/main.css'
+import store from './store'
 
 Vue.directive('document-click', {
   bind (el, binding, vnode) {
@@ -20,6 +21,7 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })

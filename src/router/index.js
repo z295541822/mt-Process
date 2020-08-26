@@ -6,6 +6,7 @@ import ChangeCity from '../page/ChangeCity'
 import Login from '../components/Login'
 import Register from '../components/Register'
 import Index from '../page/index'
+import GoodsList from '../page/GoodsList'
 
 Vue.use(Router)
 
@@ -25,6 +26,10 @@ export default new Router({
         path: '/changeCity',
         name: 'changeCity',
         component: ChangeCity
+      }, {
+        path: '/goodsList',
+        name: 'goodsList',
+        component: GoodsList
       }]
     },
     {
