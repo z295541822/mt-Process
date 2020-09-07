@@ -47,7 +47,7 @@ export default {
   },
   created () {
     api.getMenuNav().then(res => {
-      this.menuNav = res
+      this.menuNav = res.data.data
     })
   },
   methods: {

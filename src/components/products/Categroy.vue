@@ -30,7 +30,7 @@
 
 <script>
 import mySelect from './Select'
-
+import api from '../api'
 export default {
   name: 'Categroy',
   components: {
@@ -38,23 +38,7 @@ export default {
   },
   data () {
     return {
-      classicList: [
-        {
-          'title': '美食',
-          'type': 'food',
-          'subList': [{
-            'name': '日本菜',
-            'id': 'Japan'
-          }]
-        }, {
-          'title': '酒店住宿',
-          'type': 'hotal',
-          'subList': [{
-            'name': '温泉酒店',
-            'id': 'hot_spring'
-          }]
-        }
-      ],
+      classicList: [],
       areaList: [
         {
           'title': '推荐商圈',
@@ -65,10 +49,18 @@ export default {
             'name': '昌平',
             'id': 12222
           }]
-
         }
       ]
     }
+  },
+  created () {
+    api.getLifeList().then((res) => {
+      // console.log(res.data)
+        this.classicList = res.data.data
+    });
+    api.getAreaList().then((res) => {
+      // console.log(res.data)
+    })
   }
 }
 </script>

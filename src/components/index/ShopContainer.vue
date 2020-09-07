@@ -52,8 +52,7 @@ export default {
   props: ['nav'],
   created () {
     api.resultsByKeywords().then(res =>{
-      console.log(res)
-      this.resultDate = res
+      this.resultDate = res.data.data
     })
   },
   methods: {

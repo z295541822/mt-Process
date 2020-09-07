@@ -16,7 +16,7 @@
         {{ item.name }}
       </a>
       ]
-      <div class="m-user">
+      <div class="m-user" v-if="!$store.state.userName">
         <router-link :to="{ name:'login' }" class="login">
           立即登录
         </router-link>
@@ -44,8 +44,8 @@ export default {
   },
   created () {
     api.getCurPosition().then(res => {
-      this.$store.dispatch('setPosition',res)
-      this.nearCity = res.nearCity
+      this.$store.dispatch('setPosition',res.data.data)
+      this.nearCity = res.data.data.nearCity
     })
   }
 }

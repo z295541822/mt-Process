@@ -2,7 +2,8 @@
   <div class="search-panel">
     <el-row class="m-header-searchbar">
       <el-col :span="3" class="left">
-        <img src="//s0.meituan.net/bs/fe-web-meituan/fa5f0f0/img/logo.png" alt="美团">
+<!--        <img src="//s0.meituan.net/bs/fe-web-meituan/fa5f0f0/img/logo.png" alt="美团" @click="click">-->
+        <router-link to="/index" tag="img" src="//s0.meituan.net/bs/fe-web-meituan/fa5f0f0/img/logo.png"></router-link>
       </el-col>
       <el-col :span="15" class="center">
         <div class="wrapper">
@@ -38,7 +39,6 @@
 </template>
 
 <script>
-import axios from '../api/index.js'
 import api from '../api/index.js'
 export default {
   name: 'searchBar',
@@ -53,8 +53,8 @@ export default {
   },
   created () {
     api.searchHotWords().then(res =>{
-      this.hotPlaceList = res
-      this.suggestList = res
+      this.hotPlaceList = res.data.data
+      this.suggestList = res.data.data
     })
   },
   computed: {
@@ -75,13 +75,16 @@ export default {
         self.isFocus = false
       }, 200)
     },
-    input() {
+    input () {
       let val = this.searchWord
       api.searchList().then(res =>{
-        this.searchList = res.list.filter((item,index) => {
+        this.searchList = res.data.data.list.filter((item,index) => {
           return item.indexOf(val) > -1;
         })
       })
+    },
+    click () {
+      console.log(this.$router)
     }
   },
 }

@@ -50,7 +50,7 @@ export default {
   },
   created () {
     api.getProductsList().then(res => {
-      this.productList = res
+      this.productList = res.data.data
     })
   }
 }

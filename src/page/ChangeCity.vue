@@ -35,10 +35,10 @@ export default {
   },
   created () {
     api.getHotCity().then(res => {
-      this.hotList = res
+      this.hotList = res.data.data
     })
     api.getRecentCity().then(res => {
-      this.recentList = res
+      this.recentList = res.data.data
     })
   }
 }

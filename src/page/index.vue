@@ -47,12 +47,6 @@ export default {
         }, {
           text: '丽人SPA',
           tab: 'spa'
-        }, {
-          text: '电影演出',
-          tab: 'movie'
-        }, {
-          text: '品质出游',
-          tab: 'travel'
         }]
       },
       movie:{

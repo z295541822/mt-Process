@@ -42,7 +42,7 @@ export default {
   created () {
     api.getCityList().then(res => {
       var obj = {}
-      res.forEach((item, index) => {
+      res.data.data.forEach((item, index) => {
         if (!obj[item.firstChar.toUpperCase()]) {
           obj[item.firstChar.toUpperCase()] = []
         }

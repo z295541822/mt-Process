@@ -59,7 +59,7 @@ export default {
   },
   created () {
     api.getProvinceList().then(res =>{
-      this.provinceList = res.map((item) => {
+      this.provinceList = res.data.data.map((item) => {
         item.name = item.provinceName
         return item
       })
